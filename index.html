@@ -1,40 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Primera Página</title>
-    <link rel="stylesheet" href="estilos.css"> <!-- Para estilos -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sorteo por Racha de TikTok</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f6f6;
+      color: #222;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .button {
+      display: inline-block;
+      background: #ff2d55;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      margin-top: 15px;
+      border: none;
+      cursor: pointer;
+    }
+    .button:hover {
+      background: #e02147;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    @media (max-width: 600px) {
+      .card {
+        padding: 15px;
+      }
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a mi página web</h1>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre-mi">Sobre mí</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+  <header>
+    <h1>Sorteo • Racha de TikTok</h1>
+    <p>Participa según tu racha de TikTok</p>
+  </header>
 
-    <section id="inicio">
-        <p>Esta es la sección de inicio.</p>
-    </section>
+  <div class="container">
+    <div class="card">
+      <h2>¿Cómo participar?</h2>
+      <p>Este sorteo funciona según tu racha de TikTok. Dependiendo de tu racha, entras automáticamente en diferentes niveles del sorteo.</p>
+      <ul>
+        <li>🔥 Racha 1-10 → Nivel Bronze</li>
+        <li>🔥 Racha 11-50 → Nivel Silver</li>
+        <li>🔥 Racha 51+ → Nivel Gold</li>
+      </ul>
+      <a class="button" href="#participar">Participar ahora</a>
+    </div>
 
-    <section id="sobre-mi">
-        <p>¡Aquí hablo sobre mí!</p>
-    </section>
+    <div class="card" id="participar">
+      <h2>Formulario de Participación</h2>
+      <form id="formSorteo">
+        <label>Nombre</label>
+        <input type="text" id="nombre" placeholder="Tu nombre" />
 
-    <section id="contacto">
-        <p>Contáctame en: correo@ejemplo.com</p>
-    </section>
+        <label>Usuario de TikTok</label>
+        <input type="text" id="usuario" placeholder="@usuario" />
 
-    <footer>
-        <p>© 2025 Mi Página Web</p>
-    </footer>
+        <label>Tu racha actual</label>
+        <input type="number" id="racha" placeholder="Ej: 15" />
 
-    <script src="script.js"></script> <!-- Para interactividad -->
+        <button type="submit" class="button">Enviar</button>
+      </form>
+      <p id="mensaje" style="color:green; font-weight:bold;"></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('formSorteo');
+    const mensaje = document.getElementById('mensaje');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const usuario = document.getElementById('usuario').value.trim();
+      const racha = document.getElementById('racha').value.trim();
+
+      if(!nombre || !usuario || !racha) {
+        alert('Por favor, completa todos los campos.');
+        return;
+      }
+
+      mensaje.textContent = `¡Gracias ${nombre}! Tu participación ha sido registrada. 🎉`;
+      form.reset();
+    });
+  </script>
 </body>
 </html>
